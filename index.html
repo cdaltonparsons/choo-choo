@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-3">CHOO CHOO MOTHER F'ERS!!</h1>
+        <p class="lead">ALL ABOARD THE PAIN TRAIN!</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency (min)</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+    
+
+    
+        <div class="row">
+            <div class="col-md">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">Add train</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">Train Name</label>
+                            <input type="text" class="form-control" placeholder="Default input" id="train-name">
+
+                            <label class="col-form-label" for="inputDefault">Destination</label>
+                            <input type="text" class="form-control" placeholder="Default input" id="destination">
+
+                            <label class="col-form-label" for="inputDefault">Time of first train(HH:MM) in military time (ex 16:30 is 4:30pm)</label>
+                            <input type="text" class="form-control" placeholder="Default input" id="time-first-train">
+
+                            <label class="col-form-label" for="inputDefault">Frequency (min.)</label>
+                            <input type="text" class="form-control" placeholder="Default input" id="frequency">
+
+                            <button type="button" id="button" class="btn btn-primary">Add Train</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/logic.js"></script>
+</body>
+
+</html>
