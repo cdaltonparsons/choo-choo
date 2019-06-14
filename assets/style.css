@@ -1,0 +1,13 @@
+body {
+    background: lightskyblue;
+}
+
+.jumbotron {
+    background: lightgreen;
+    opacity: .8;
+}
+
+.card {
+    background: lightpink;
+}
+

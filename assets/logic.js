@@ -12,6 +12,8 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
+var audio = new Audio("assets/train-whistle.wav")
+
 var trainName = "";
 var destination = "";
 var firstTrain = "";
@@ -39,16 +41,35 @@ $("#button").on("click", function(event) {
     firstTrain: firstTrain,
     frequency: frequency
   });
+  $("#train-name").val("");
+  $("#destination").val("");
+  $("#time-first-train").val("");
+  $("#frequency").val("");
+
+  audio.play()
 });
 
 database.ref().on("child_added", function(snapshot) {
+  
   var sv = snapshot.val();
+  // Need to take the start time of the first train, then calculate how often that train runs
+  
+var trainFrequency = parseInt(sv.frequency);
+var firstTime = sv.firstTrain;
+var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "days");
+var currentTime = moment().subtract(1, "days");
+var diffTime = currentTime.diff(firstTimeConverted, "minutes");
+var tRemainder = diffTime % trainFrequency;
+var minutesNextTrain = trainFrequency - tRemainder;
+var nextTrain = moment().add(minutesNextTrain, "minutes").format("HH:mm");
+
+
   var tableRow = $("<tr>");
   var newTrain = $("<td>").text(sv.train);
   var newDestination = $("<td>").text(sv.destination);
   var newFrequency = $("<td>").text(sv.frequency);
-  var nextArrival = $("<td>").text("");
-  var minutesAway = $("<td>").text("");
+  var nextArrival = $("<td>").text(nextTrain);
+  var minutesAway = $("<td>").text(minutesNextTrain);
 
   tableRow.append(
     newTrain,
@@ -57,5 +78,5 @@ database.ref().on("child_added", function(snapshot) {
     nextArrival,
     minutesAway
   );
-  $("#table").append(tableRow);
+  $("#table-body").append(tableRow);
 });

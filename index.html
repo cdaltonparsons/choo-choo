@@ -11,20 +11,21 @@
         integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp" crossorigin="anonymous">
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
 
 <body>
     <div class="jumbotron">
         <h1 class="display-3">CHOO CHOO MOTHER F'ERS!!</h1>
-        <p class="lead">ALL ABOARD THE PAIN TRAIN!</p>
+        <p class="lead">ALL ABOARD!</p>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md">
                 <table class="table" id="table">
                     <thead>
-                        <tr>
+                        <tr id="table-head">
                             <th scope="col">Train Name</th>
                             <th scope="col">Destination</th>
                             <th scope="col">Frequency (min)</th>
