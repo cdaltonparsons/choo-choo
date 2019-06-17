@@ -12,7 +12,7 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
-var audio = new Audio("assets/train-whistle.wav")
+var audio = new Audio("assets/train-whistle.wav");
 
 var trainName = "";
 var destination = "";
@@ -46,23 +46,23 @@ $("#button").on("click", function(event) {
   $("#time-first-train").val("");
   $("#frequency").val("");
 
-  audio.play()
+  audio.play();
 });
 
 database.ref().on("child_added", function(snapshot) {
-  
   var sv = snapshot.val();
   // Need to take the start time of the first train, then calculate how often that train runs
-  
-var trainFrequency = parseInt(sv.frequency);
-var firstTime = sv.firstTrain;
-var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "days");
-var currentTime = moment().subtract(1, "days");
-var diffTime = currentTime.diff(firstTimeConverted, "minutes");
-var tRemainder = diffTime % trainFrequency;
-var minutesNextTrain = trainFrequency - tRemainder;
-var nextTrain = moment().add(minutesNextTrain, "minutes").format("HH:mm");
 
+  var trainFrequency = parseInt(sv.frequency);
+  var firstTime = sv.firstTrain;
+  var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "days");
+  var currentTime = moment().subtract(1, "days");
+  var diffTime = currentTime.diff(firstTimeConverted, "minutes");
+  var tRemainder = diffTime % trainFrequency;
+  var minutesNextTrain = trainFrequency - tRemainder;
+  var nextTrain = moment()
+    .add(minutesNextTrain, "minutes")
+    .format("HH:mm");
 
   var tableRow = $("<tr>");
   var newTrain = $("<td>").text(sv.train);
